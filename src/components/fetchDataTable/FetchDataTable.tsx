@@ -13,15 +13,19 @@ export default function FetchDataTable() {
     const [allPosts, setAllPosts] = useState<Post[] | undefined>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<any>();
-    const [itemsNumber, setItemsNumber] = useState<number>(10);
+    const [page, setPage] = useState<number>(0);
+    const [total, setTotal] = useState<number>(0);
+    // const [itemsNumber, setItemsNumber] = useState<number>(5);
+    const itemsPerPage = 10;
 
     useEffect(() => {
         setIsLoading(true)
         const getPosts = async () => {
             try {
-                const responseDummy = await fetch(`${BASE_URL_DUMMY}/products?limit=${itemsNumber}`);
+                const responseDummy = await fetch(`${BASE_URL_DUMMY}/products?limit=10&page=5&skip=${page}`);
                 const posts = await responseDummy.json();            
                 setAllPosts(posts.products);
+                setTotal(posts.total);
             } catch (error) {
                 setError(error);
             } finally {
@@ -35,7 +39,7 @@ export default function FetchDataTable() {
         setTimeout(() => {
             setIsLoading(false);
         }, 1500);
-    }, [itemsNumber]);
+    }, [page]);
 
     if (error) {
         return <div>Something went wrong. Try again please...</div>;
@@ -47,6 +51,11 @@ export default function FetchDataTable() {
             {isLoading && <div>Loading ...</div> }
             {!isLoading && (
                 <div>
+                   {/*  <div className="tableSettings">
+                        <button type="button" disabled={itemsNumber===5} onClick={() => {setItemsNumber(5)}}>5 items per page</button>
+                        <button type="button" disabled={itemsNumber===10} onClick={() => {setItemsNumber(10)}}>10 items per page</button>
+                        <button type="button" disabled={itemsNumber===20} onClick={() => {setItemsNumber(20)}}>20 items per page</button>
+                    </div> */}
                     <table className="table">
                         <thead>
                             <tr>
@@ -66,10 +75,10 @@ export default function FetchDataTable() {
                         </tbody>
                     </table>
                     <div className="pagination">
-                        <button>First</button>
-                        <button>Preview</button>
-                        <button>Next</button>
-                        <button>Last</button>
+                        <button disabled={page === 0} onClick={() => setPage(0)}>First</button>
+                        <button disabled={page === 0} onClick={() => setPage(page - itemsPerPage)}>Preview</button>
+                        <button onClick={() => setPage(page + itemsPerPage)}>Next</button>
+                        <button onClick={() => setPage(total-itemsPerPage)}>Last</button>
                         
                     </div>
                 </div>
