@@ -21,6 +21,7 @@ export default function App() {
           ))}
         </ul>
       </nav>
+      <div><h4>Testing React app</h4></div>
       <div>
         <Outlet />
       </div>
