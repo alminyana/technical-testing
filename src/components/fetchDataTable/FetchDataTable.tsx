@@ -18,6 +18,10 @@ export default function FetchDataTable() {
     // const [itemsNumber, setItemsNumber] = useState<number>(5);
     const itemsPerPage = 10;
 
+    useEffect(()=>{
+        console.log(page);
+    }, [page]);
+
     useEffect(() => {
         setIsLoading(true)
         const getPosts = async () => {
@@ -77,8 +81,8 @@ export default function FetchDataTable() {
                     <div className="pagination">
                         <button disabled={page === 0} onClick={() => setPage(0)}>First</button>
                         <button disabled={page === 0} onClick={() => setPage(page - itemsPerPage)}>Preview</button>
-                        <button onClick={() => setPage(page + itemsPerPage)}>Next</button>
-                        <button onClick={() => setPage(total-itemsPerPage)}>Last</button>
+                        <button disabled={page === total-itemsPerPage} onClick={() => setPage(page + itemsPerPage)}>Next</button>
+                        <button disabled={page === total-itemsPerPage} onClick={() => setPage(total-itemsPerPage)}>Last</button>
                         
                     </div>
                 </div>
