@@ -1,0 +1,13 @@
+.fetchDataContainer {
+    background-color: yellow;
+    padding: 6px;
+    height: 100%;
+}
+
+.fetchTitle {
+    color: blue;
+}
+
+.isLoading {
+    margin: 15px 0;
+}

@@ -1,0 +1,17 @@
+.notFound {
+    padding: 30px;
+    background-color: lightgray;
+}
+
+.backButton {
+    padding: 6px;
+    background-color: white;
+    cursor: pointer;
+    color: #00008f;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.backButton:hover {
+    text-decoration: underline;
+}
