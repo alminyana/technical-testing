@@ -16,7 +16,7 @@ export default function FetchDataTable() {
     const [page, setPage] = useState<number>(0);
     const [total, setTotal] = useState<number>(0);
     // const [itemsNumber, setItemsNumber] = useState<number>(5);
-    const itemsPerPage = 10;
+    const itemsPerPage = 8;
 
     useEffect(()=>{
         console.log(page);
@@ -26,7 +26,7 @@ export default function FetchDataTable() {
         setIsLoading(true)
         const getPosts = async () => {
             try {
-                const responseDummy = await fetch(`${BASE_URL_DUMMY}/products?limit=10&page=5&skip=${page}`);
+                const responseDummy = await fetch(`${BASE_URL_DUMMY}/products?limit=${itemsPerPage}&page=5&skip=${page}`);
                 const posts = await responseDummy.json();            
                 setAllPosts(posts.products);
                 setTotal(posts.total);
@@ -47,6 +47,10 @@ export default function FetchDataTable() {
 
     if (error) {
         return <div>Something went wrong. Try again please...</div>;
+    }
+
+    const lastPageToShow = (): boolean => {
+        return page === total-((total % itemsPerPage) === 0 ? itemsPerPage : (total % itemsPerPage));
     }
 
     return (
@@ -81,9 +85,8 @@ export default function FetchDataTable() {
                     <div className="pagination">
                         <button disabled={page === 0} onClick={() => setPage(0)}>First</button>
                         <button disabled={page === 0} onClick={() => setPage(page - itemsPerPage)}>Preview</button>
-                        <button disabled={page === total-itemsPerPage} onClick={() => setPage(page + itemsPerPage)}>Next</button>
-                        <button disabled={page === total-itemsPerPage} onClick={() => setPage(total-itemsPerPage)}>Last</button>
-                        
+                        <button disabled={lastPageToShow()} onClick={() => setPage(page + itemsPerPage)}>Next</button>
+                        <button disabled={lastPageToShow()} onClick={() => setPage(total-((total % itemsPerPage) === 0 ? itemsPerPage : (total % itemsPerPage)))}>Last</button>
                     </div>
                 </div>
             )}
