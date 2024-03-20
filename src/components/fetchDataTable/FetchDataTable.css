@@ -2,6 +2,10 @@
     display: block;
 }
 
+.table thead {
+    font-weight: 700;
+}
+
 td.productTitle {
     min-width: 300px;
 }

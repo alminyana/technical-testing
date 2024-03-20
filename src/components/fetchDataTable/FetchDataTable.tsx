@@ -52,7 +52,7 @@ export default function FetchDataTable() {
                             <tr>
                                 <td  className="productId">ID</td>
                                 <td className="productTitle">Title</td>
-                                <td>Price</td>
+                                <td>Category</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,6 +70,7 @@ export default function FetchDataTable() {
                         <button>Preview</button>
                         <button>Next</button>
                         <button>Last</button>
+                        
                     </div>
                 </div>
             )}
