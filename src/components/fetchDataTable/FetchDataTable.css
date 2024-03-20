@@ -1,0 +1,17 @@
+.table {
+    display: block;
+}
+
+td.productTitle {
+    min-width: 300px;
+}
+
+td.productId {
+    min-width: 60px;
+}
+
+.pagination {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+}
