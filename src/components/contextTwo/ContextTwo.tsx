@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { TryContextData } from "./context";
-import React from "react";
 import SubTryContext from "./SubContextTwo";
 
 export interface Data {
@@ -13,7 +12,6 @@ export interface Data {
 
 export default function ContextTwo() {
     const consoleData = (value: Data) => {
-        console.log(value);
         setState({
             id: 234242,
             title: 'data has changed',
@@ -26,7 +24,7 @@ export default function ContextTwo() {
         id: 1,
         title: 'First data',
         value: 129,
-        printData: consoleData
+        printData: consoleData || null
     });
 
     return (

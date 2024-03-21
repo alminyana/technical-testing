@@ -11,9 +11,6 @@ function PostData() {
     const [errorLogin, setErrorLogin] = useState<boolean>(false);
 
     const submitForm = async ():Promise<any> => {
-        console.log('nameValue :::::', nameValue)
-        console.log('pwdValue :::::', pwdValue)
-
         const reqOptions = {
             method: 'POST',
             header: {'Content-Type': 'application/json'},
@@ -58,11 +55,11 @@ function PostData() {
                     </div>
                 </div>
             )}
-            {isLogged && (
+            {/* {isLogged && ( */}
                 <div>
                     <IsLoggedComponent name={nameValue} />
                 </div>
-            )}
+            {/* )} */}
             {errorLogin && <div>Something went wrong</div>}
         </div>
     );
