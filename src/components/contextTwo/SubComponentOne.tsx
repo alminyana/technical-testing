@@ -15,7 +15,7 @@ export default function SubComponentOne(props: any) {
             <div>title:   {data?.title}</div>
             <div>id:      {data?.id}</div>
             <div>value:   {data?.value}</div>
-            <div><button onClick={() => data?.printData(data.title)}>print title</button></div>
+            <div><button onClick={() => data?.printData(data)}>print title</button></div>
 
             <div>{children}</div>
         </div>
