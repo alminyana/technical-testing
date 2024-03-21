@@ -15,6 +15,7 @@ export default function DashboardWrapper () {
 
     return (
         <DashboardContext.Provider value={userr}>
+          <h4>holaa</h4>
           <Dashboard />
         </DashboardContext.Provider>
     );
